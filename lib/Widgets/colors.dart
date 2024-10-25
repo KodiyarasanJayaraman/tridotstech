@@ -11,6 +11,7 @@ class AppColor {
   static Color textColor838 = HexColor('#383838');
   static Color irPrimeColor = HexColor('#FFEDEF');
   static Color black222222 = HexColor('#222222');
+  static Color black00000 = HexColor('#000000');
 }
 
 class HexColor extends Color {

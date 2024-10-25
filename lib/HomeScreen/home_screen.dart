@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tridotstech/HomeScreen/article_screen.dart';
+import 'package:tridotstech/HomeScreen/sample.dart';
 import 'package:tridotstech/Widgets/colors.dart';
 import 'package:tridotstech/Widgets/commons.dart';
 import 'package:tridotstech/Widgets/text_widget.dart';
@@ -69,6 +71,27 @@ class _MyHomePageState extends State<MyHomePage>
     'E-commerce',
     'Fashion'
   ];
+  List categoryCard = [
+    {
+      "image": 'assets/citywalk.png',
+      "title": "Select Citywalk",
+      "subtitle": "Wow! Momo Foods enters Bhopal with Wow! ",
+      "beverage": "# Beverage"
+    },
+    {
+      "image": 'assets/food_beverage.png',
+      "title": "Food & Beverage",
+      "subtitle":
+          "KFC opens another outlet in Punjab KFC opens another outlet in Punjab",
+      "beverage": "# Beverage"
+    },
+    {
+      "image": 'assets/fnp_city_walk.png',
+      "title": "Select Citywalk",
+      "subtitle": "FNP (Ferns N Petals) appoints Ashish Goel",
+      "beverage": "# Citywalk"
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -76,9 +99,11 @@ class _MyHomePageState extends State<MyHomePage>
       backgroundColor: AppColor.backgroundWhite,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: SvgPicture.asset(
-          "assets/drawer_menu.svg",
-          fit: BoxFit.none,
+        leading: InkWell(
+          child: SvgPicture.asset(
+            "assets/drawer_menu.svg",
+            fit: BoxFit.none,
+          ),
         ),
         centerTitle: true,
         title: Image.asset(
@@ -108,41 +133,54 @@ class _MyHomePageState extends State<MyHomePage>
                 itemCount: 3,
                 padding: const EdgeInsets.only(left: 16.43),
                 itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    height: 80.12,
-                    width: 272,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(3.89)),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 4.46, vertical: 9.69),
-                    child: Row(
-                      children: [
-                        photoContainer(
-                            "assets/hotspot.png", 3.66, 60.75, 75.73),
-                        7.31.width,
-                        Expanded(
-                            child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            12.height,
-                            TextWidget(
-                              text: 'Hotspots',
-                              fontSize: 9.5,
-                              color: AppColor.primaryRed,
-                            ),
-                            TextWidget(
-                              text:
-                                  'Luxury hotspots: 5 most expensive\n high streets in the..',
-                              color: AppColor.primaryTextBlack,
-                              fontWeight: FontWeight.w400,
-                              fontSize: 10.53,
+                  return InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ArticleScreen(
+                                image: 'assets/hotspot.png',
+                                title:
+                                    'Luxury hotspots: 5 most expensive\n high streets in the..',
+                              )));
+                    },
+                    child: Container(
+                      height: 80.12,
+                      width: 272,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(3.89)),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 4.46, vertical: 9.69),
+                      child: Row(
+                        children: [
+                          const PhotoContainer(
+                              imgUrl: "assets/hotspot.png",
+                              cornerRadius: 3.66,
+                              height: 60.75,
+                              width: 75.73),
+                          7.31.width,
+                          Expanded(
+                              child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              12.height,
+                              TextWidget(
+                                text: 'Hotspots',
+                                fontSize: 9.5,
+                                color: AppColor.primaryRed,
+                              ),
+                              TextWidget(
+                                text:
+                                    'Luxury hotspots: 5 most expensive\n high streets in the..',
+                                color: AppColor.primaryTextBlack,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 10.53,
 
-                              // maxlines: 3,
-                            ),
-                          ],
-                        ))
-                      ],
+                                // maxlines: 3,
+                              ),
+                            ],
+                          ))
+                        ],
+                      ),
                     ),
                   );
                 },
@@ -155,19 +193,34 @@ class _MyHomePageState extends State<MyHomePage>
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   14.93.height,
-                  Padding(
-                    padding: EdgeInsets.only(left: 18.85),
-                    child: photoContainer(
-                        'assets/infocus_image.png', 5.0, 208.0, 360.0),
-                  ),
-                  9.75.height,
-                  TextWidget(
-                    padding: const EdgeInsets.only(left: 20.8, right: 13.86),
-                    text:
-                        'Rahul Gandhi In Manipur: Chopper Ride After Women Protesters Surround Car',
-                    color: AppColor.textBlack405,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 12.89,
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ArticleScreen(
+                              title:
+                                  'Rahul Gandhi In Manipur: Chopper Ride After Women Protesters Surround Car',
+                              image: 'assets/infocus_image.png')));
+                    },
+                    child: Column(
+                      children: [
+                        const PhotoContainer(
+                          margin: EdgeInsets.symmetric(horizontal: 18),
+                          imgUrl: 'assets/infocus_image.png',
+                          cornerRadius: 5.0,
+                          height: 208.0,
+                        ),
+                        9.75.height,
+                        TextWidget(
+                          padding:
+                              const EdgeInsets.only(left: 20.8, right: 13.86),
+                          text:
+                              'Rahul Gandhi In Manipur: Chopper Ride After Women Protesters Surround Car',
+                          color: AppColor.textBlack405,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 12.89,
+                        ),
+                      ],
+                    ),
                   ),
                   15.height,
                   Padding(
@@ -175,29 +228,86 @@ class _MyHomePageState extends State<MyHomePage>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        selectCard(
-                            'assets/citywalk.png',
-                            "Select Citywalk",
-                            "Wow! Momo Foods enters Bhopal with Wow! ",
-                            "# Beverage"),
-                        15.height,
-                        const Divider(
-                          height: 0.56,
-                        ),
-                        selectCard(
-                            'assets/food_beverage.png',
-                            "Food & Beverage",
-                            "KFC opens another outlet in Punjab KFC opens another outlet in Punjab",
-                            "# Beverage"),
-                        15.height,
-                        const Divider(
-                          height: 0.56,
-                        ),
-                        selectCard(
-                            'assets/fnp_city_walk.png',
-                            "Select Citywalk",
-                            "FNP (Ferns N Petals) appoints Ashish Goel",
-                            "# Beverage"),
+                        Column(
+                            children:
+                                List.generate(categoryCard.length, (index) {
+                          return Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right: 18.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => ArticleScreen(
+                                            title:
+                                                "${categoryCard[index]['title']} " +
+                                                    categoryCard[index]
+                                                        ['subtitle'],
+                                            image: categoryCard[index]
+                                                ['image'])));
+                                  },
+                                  child: Row(
+                                    children: [
+                                      PhotoContainer(
+                                        imgUrl: categoryCard[index]['image'],
+                                        cornerRadius: 5.14,
+                                        height: 66.36,
+                                        width: 106,
+                                      ),
+                                      15.89.width,
+                                      Expanded(
+                                          child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          TextWidget(
+                                            text: categoryCard[index]['title'],
+                                            fontSize: 8.2,
+                                            fontWeight: FontWeight.w600,
+                                            color: AppColor.primaryRed,
+                                          ),
+                                          TextWidget(
+                                            text: categoryCard[index]
+                                                ['subtitle'],
+                                            color: AppColor.primaryTextBlack,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 12,
+                                          ),
+                                          7.height,
+                                          Row(
+                                            children: [
+                                              TextWidget(
+                                                text: categoryCard[index]
+                                                    ['beverage'],
+                                                color:
+                                                    AppColor.primaryTextBlack,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 10.1,
+                                              ),
+                                              6.04.width,
+                                              TextWidget(
+                                                text: '#reel stories podcast',
+                                                color: AppColor.textGreyE4E,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 10.1,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ))
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              15.height,
+                              if (index + 1 != categoryCard.length)
+                                const Divider(
+                                  height: 0.56,
+                                ),
+                              15.height
+                            ],
+                          );
+                        })),
                         35.height,
                         TextWidget(
                           text: 'Latest News',
@@ -206,22 +316,9 @@ class _MyHomePageState extends State<MyHomePage>
                           fontSize: 14,
                         ),
                         10.height,
-                        Row(
-                          children: [
-                            for (var i = 0; i < 3; i++)
-                              Container(
-                                height: 5,
-                                width: i == selectIndex ? 15.19 : 5,
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 5),
-                                decoration: BoxDecoration(
-                                    color: i == selectIndex
-                                        ? AppColor.indicatorColor
-                                        : Colors.grey.shade300,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(5.64))),
-                              ),
-                          ],
+                        IndicatorWidget(
+                          length: 3,
+                          selectIndex: selectIndex,
                         ),
                         15.height,
                         SizedBox(
@@ -246,7 +343,6 @@ class _MyHomePageState extends State<MyHomePage>
                                       color: Colors.white,
                                       borderRadius:
                                           BorderRadius.circular(8.89)),
-                                  // alignment: Alignment.topCenter,
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -338,18 +434,8 @@ class _MyHomePageState extends State<MyHomePage>
                     color: HexColor('#666666'),
                   ),
                   35.height,
-                  Center(
-                    child: TextWidget(
-                      text: '- Advertisement -',
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                      color: HexColor('#222222'),
-                    ),
-                  ),
-                  5.height,
-                  Center(
-                    child: photoContainer(
-                        "assets/advertisement.png", 0, 100.0, 320.0),
+                  const AdvertisementWidget(
+                    imgUrl: "assets/advertisement.png",
                   ),
                   35.height,
                   ColoredBox(
@@ -429,8 +515,11 @@ class _MyHomePageState extends State<MyHomePage>
                                 //     horizontal: 4.46, vertical: 9.69),
                                 child: Row(
                                   children: [
-                                    photoContainer(irPrimeCard[index]['image'],
-                                        8, 74.0, 74.0),
+                                    PhotoContainer(
+                                        imgUrl: irPrimeCard[index]['image'],
+                                        cornerRadius: 8,
+                                        height: 74.0,
+                                        width: 74.0),
                                     16.width,
                                     Expanded(
                                         child: TextWidget(
@@ -459,24 +548,10 @@ class _MyHomePageState extends State<MyHomePage>
                     fontSize: 14,
                   ),
                   10.height,
-                  Padding(
-                    padding: const EdgeInsets.only(left: 17.5),
-                    child: Row(
-                      children: [
-                        for (var i = 0; i < 3; i++)
-                          Container(
-                            height: 5,
-                            width: i == selectIndex1 ? 15.19 : 5,
-                            margin: const EdgeInsets.symmetric(horizontal: 5),
-                            decoration: BoxDecoration(
-                                color: i == selectIndex1
-                                    ? AppColor.indicatorColor
-                                    : Colors.grey.shade300,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(5.64))),
-                          ),
-                      ],
-                    ),
+                  IndicatorWidget(
+                    length: 3,
+                    selectIndex: selectIndex1,
+                    padding: EdgeInsets.only(left: 17.5),
                   ),
                   15.height,
                   SizedBox(
@@ -607,32 +682,15 @@ class _MyHomePageState extends State<MyHomePage>
                                                     Alignment.bottomCenter,
                                               )),
                                       Positioned(
-                                          bottom: 3,
-                                          left: 35,
-                                          child: Row(
-                                            children: [
-                                              for (var i = 0; i < 5; i++)
-                                                Container(
-                                                  height: 5,
-                                                  width:
-                                                      i == selectIndex ? 20 : 8,
-                                                  margin: const EdgeInsets
-                                                      .symmetric(horizontal: 5),
-                                                  decoration: BoxDecoration(
-                                                      color: i == selectIndex
-                                                          ? Colors
-                                                              .green.shade800
-                                                              .withOpacity(.5)
-                                                          : Colors
-                                                              .grey.shade300,
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                              .all(
-                                                              Radius.circular(
-                                                                  4))),
-                                                ),
-                                            ],
-                                          )),
+                                        bottom: 3,
+                                        left: 35,
+                                        child: IndicatorWidget(
+                                          length: 3,
+                                          selectIndex: selectIndex,
+                                          indicateColor: Colors.green.shade800
+                                              .withOpacity(.5),
+                                        ),
+                                      ),
                                       Positioned(
                                         bottom: 7,
                                         left: 10,
@@ -670,24 +728,10 @@ class _MyHomePageState extends State<MyHomePage>
                     fontSize: 14,
                   ),
                   10.height,
-                  Padding(
-                    padding: const EdgeInsets.only(left: 17.5),
-                    child: Row(
-                      children: [
-                        for (var i = 0; i < 3; i++)
-                          Container(
-                            height: 5,
-                            width: i == selectIndex1 ? 15.19 : 5,
-                            margin: const EdgeInsets.symmetric(horizontal: 5),
-                            decoration: BoxDecoration(
-                                color: i == selectIndex1
-                                    ? AppColor.indicatorColor
-                                    : Colors.grey.shade300,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(5.64))),
-                          ),
-                      ],
-                    ),
+                  IndicatorWidget(
+                    length: 3,
+                    selectIndex: selectIndex1,
+                    padding: EdgeInsets.only(left: 17.5),
                   ),
                   15.height,
                   SizedBox(
@@ -730,24 +774,10 @@ class _MyHomePageState extends State<MyHomePage>
                     fontSize: 14,
                   ),
                   10.height,
-                  Padding(
-                    padding: const EdgeInsets.only(left: 17.5),
-                    child: Row(
-                      children: [
-                        for (var i = 0; i < 3; i++)
-                          Container(
-                            height: 5,
-                            width: i == selectIndex1 ? 15.19 : 5,
-                            margin: const EdgeInsets.symmetric(horizontal: 5),
-                            decoration: BoxDecoration(
-                                color: i == selectIndex1
-                                    ? AppColor.indicatorColor
-                                    : Colors.grey.shade300,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(5.64))),
-                          ),
-                      ],
-                    ),
+                  IndicatorWidget(
+                    length: 3,
+                    selectIndex: selectIndex1,
+                    padding: EdgeInsets.only(left: 17.5),
                   ),
                   15.height,
                   SizedBox(
@@ -755,101 +785,99 @@ class _MyHomePageState extends State<MyHomePage>
                     child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: 3,
-                        padding: EdgeInsets.symmetric(horizontal: 17),
+                        padding: const EdgeInsets.symmetric(horizontal: 17),
                         itemBuilder: (BuildContext context, int index) {
-                          return Container(
-                            height: 281,
-                            width: 240.14,
-                            margin: EdgeInsets.only(right: 40),
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: AppColor.latestNewsCardColor,
-                                    width: .89),
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(8.89)),
-                            alignment: Alignment.topCenter,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                    height: 150,
-                                    decoration: const BoxDecoration(
-                                        color: Colors.green,
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                                'assets/latest_news.png'),
-                                            fit: BoxFit.cover),
-                                        borderRadius: BorderRadius.vertical(
-                                            top: Radius.circular(8.89)))),
-                                12.height,
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 8.0),
-                                  child: Row(
-                                    children: [
-                                      CircleAvatar(
-                                        child: Image.asset(
-                                            'assets/review_lady.png'),
-                                      ),
-                                      Expanded(
-                                        child: TextWidget(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 8.91),
-                                          text:
-                                              'Unwrapping the Archies’ reinvention plan',
-                                          color: AppColor.textColor838,
-                                          fontSize: 13.98,
-                                          fontWeight: FontWeight.w400,
+                          return InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const ArticleScreen(
+                                      title:
+                                          'Unwrapping the Archies’ reinvention plan',
+                                      image: 'assets/latest_news.png')));
+                            },
+                            child: Container(
+                              height: 281,
+                              width: 240.14,
+                              margin: const EdgeInsets.only(right: 40),
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: AppColor.latestNewsCardColor,
+                                      width: .89),
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(8.89)),
+                              alignment: Alignment.topCenter,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                      height: 150,
+                                      decoration: const BoxDecoration(
+                                          color: Colors.green,
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  'assets/latest_news.png'),
+                                              fit: BoxFit.cover),
+                                          borderRadius: BorderRadius.vertical(
+                                              top: Radius.circular(8.89)))),
+                                  12.height,
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: Row(
+                                      children: [
+                                        CircleAvatar(
+                                          child: Image.asset(
+                                              'assets/review_lady.png'),
                                         ),
-                                      ),
-                                    ],
+                                        Expanded(
+                                          child: TextWidget(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8.91),
+                                            text:
+                                                'Unwrapping the Archies’ reinvention plan',
+                                            color: AppColor.textColor838,
+                                            fontSize: 13.98,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                10.09.height,
-                                Expanded(
-                                  child: TextWidget(
-                                    maxlines: 2,
+                                  10.09.height,
+                                  Expanded(
+                                    child: TextWidget(
+                                      maxlines: 2,
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 9),
+                                      text:
+                                          'From a total of around 522 Apple stores across the world..',
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 13,
+                                      color: HexColor('#666666'),
+                                    ),
+                                  ),
+                                  3.height,
+                                  TextWidget(
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 9),
-                                    text:
-                                        'From a total of around 522 Apple stores across the world..',
+                                    text: 'Arundhati Roy',
                                     fontWeight: FontWeight.w400,
                                     fontSize: 13,
-                                    color: HexColor('#666666'),
+                                    color: HexColor('#000000'),
                                   ),
-                                ),
-                                3.height,
-                                TextWidget(
-                                  padding: EdgeInsets.symmetric(horizontal: 9),
-                                  text: 'Arundhati Roy',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 13,
-                                  color: HexColor('#000000'),
-                                ),
-                                13.height
-                              ],
+                                  13.height
+                                ],
+                              ),
                             ),
                           );
                         }),
                   ),
                   15.height,
                   Center(
-                    child: Row(
-                      children: [
-                        for (var i = 0; i < 3; i++)
-                          Container(
-                            height: 5,
-                            width: i == selectIndex1 ? 15.19 : 5,
-                            margin: const EdgeInsets.symmetric(horizontal: 5),
-                            decoration: BoxDecoration(
-                                color: i == selectIndex1
-                                    ? AppColor.indicatorColor
-                                    : Colors.grey.shade300,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(5.64))),
-                          ),
-                      ],
-                    ),
-                  ),
+                      child: IndicatorWidget(
+                    length: 3,
+                    selectIndex: selectIndex1,
+                    padding: EdgeInsets.only(left: 17.5),
+                  )),
                   25.height,
                   SizedBox(
                     height: 80,
@@ -871,8 +899,11 @@ class _MyHomePageState extends State<MyHomePage>
                               horizontal: 4.46, vertical: 9.69),
                           child: Row(
                             children: [
-                              photoContainer(
-                                  "assets/fashon.png", 3.66, 60.75, 75.73),
+                              const PhotoContainer(
+                                  imgUrl: "assets/fashon.png",
+                                  cornerRadius: 3.66,
+                                  height: 60.75,
+                                  width: 75.73),
                               7.31.width,
                               Expanded(
                                   child: Column(
@@ -919,22 +950,9 @@ class _MyHomePageState extends State<MyHomePage>
                                 fontSize: 14,
                               ),
                               10.height,
-                              Row(
-                                children: [
-                                  for (var i = 0; i < 3; i++)
-                                    Container(
-                                      height: 5,
-                                      width: i == selectIndex ? 15.19 : 5,
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 5),
-                                      decoration: BoxDecoration(
-                                          color: i == selectIndex
-                                              ? AppColor.indicatorColor
-                                              : Colors.grey.shade300,
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(5.64))),
-                                    ),
-                                ],
+                              IndicatorWidget(
+                                length: 3,
+                                selectIndex: selectIndex,
                               ),
                             ],
                           ),
@@ -952,42 +970,52 @@ class _MyHomePageState extends State<MyHomePage>
                               },
                               itemCount: 3,
                               itemBuilder: (BuildContext context, int index) {
-                                return Container(
-                                  width: 231,
-                                  margin: EdgeInsets.only(left: 22, right: 19),
-                                  decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius:
-                                          BorderRadius.circular(8.89)),
-                                  // alignment: Alignment.topCenter,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                          height: 183,
-                                          decoration: const BoxDecoration(
-                                              color: Colors.green,
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      'assets/jwell.png'),
-                                                  fit: BoxFit.cover),
-                                              borderRadius:
-                                                  BorderRadius.vertical(
-                                                      top: Radius.circular(
-                                                          8.89)))),
-                                      12.85.height,
-                                      const TextWidget(
-                                        maxlines: 2,
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 8.91),
-                                        text:
-                                            'Unwrapping the Archies’ reinvention plan',
-                                        color: Colors.white,
-                                        fontSize: 13.98,
-                                        fontWeight: FontWeight.w400,
-                                      )
-                                    ],
+                                return InkWell(
+                                  onTap: () {
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => const ArticleScreen(
+                                            title:
+                                                "Unwrapping the Archies’ reinvention plan",
+                                            image: 'assets/jwell.png')));
+                                  },
+                                  child: Container(
+                                    width: 231,
+                                    margin:
+                                        EdgeInsets.only(left: 22, right: 19),
+                                    decoration: BoxDecoration(
+                                        color: Colors.black,
+                                        borderRadius:
+                                            BorderRadius.circular(8.89)),
+                                    // alignment: Alignment.topCenter,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                            height: 183,
+                                            decoration: const BoxDecoration(
+                                                color: Colors.green,
+                                                image: DecorationImage(
+                                                    image: AssetImage(
+                                                        'assets/jwell.png'),
+                                                    fit: BoxFit.cover),
+                                                borderRadius:
+                                                    BorderRadius.vertical(
+                                                        top: Radius.circular(
+                                                            8.89)))),
+                                        12.85.height,
+                                        const TextWidget(
+                                          maxlines: 2,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 8.91),
+                                          text:
+                                              'Unwrapping the Archies’ reinvention plan',
+                                          color: Colors.white,
+                                          fontSize: 13.98,
+                                          fontWeight: FontWeight.w400,
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 );
                               }),
@@ -996,117 +1024,120 @@ class _MyHomePageState extends State<MyHomePage>
                     ),
                   ),
                   15.height,
-                  Center(
-                    child: TextWidget(
-                      text: '- Advertisement -',
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                      color: HexColor('#222222'),
-                    ),
-                  ),
-                  5.height,
-                  Center(
-                    child: photoContainer("assets/watch.png", 0, 100.0, 320.0),
+                  const AdvertisementWidget(
+                    imgUrl: "assets/watch.png",
                   ),
                   35.height,
                   TextWidget(
-                    padding: EdgeInsets.only(left: 17),
+                    padding: const EdgeInsets.only(left: 17),
                     text: 'Fashion & Lifestyle',
                     color: AppColor.primaryTextBlack,
                     fontWeight: FontWeight.w500,
                     fontSize: 14,
                   ),
                   10.height,
-                  Padding(
+                  IndicatorWidget(
                     padding: const EdgeInsets.only(left: 17.5),
-                    child: Row(
-                      children: [
-                        for (var i = 0; i < 3; i++)
-                          Container(
-                            height: 5,
-                            width: i == selectIndex1 ? 15.19 : 5,
-                            margin: const EdgeInsets.symmetric(horizontal: 5),
-                            decoration: BoxDecoration(
-                                color: i == selectIndex1
-                                    ? AppColor.indicatorColor
-                                    : Colors.grey.shade300,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(5.64))),
-                          ),
-                      ],
-                    ),
+                    length: 3,
+                    selectIndex: selectIndex,
                   ),
                   15.height,
-                  SizedBox(
-                    height: 128 * 3 + 81,
-                    child: ListView.separated(
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: fashionCard.length,
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      separatorBuilder: (BuildContext context, int index) {
-                        return 27.height;
+                  Column(
+                      children: List.generate(fashionCard.length, (index) {
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ArticleScreen(
+                                title: fashionCard[index]['subtitle'],
+                                image: fashionCard[index]['image'])));
                       },
-                      itemBuilder: (BuildContext context, index) {
-                        return Container(
-                          margin: EdgeInsets.only(right: 17.16),
-                          child: Row(
-                            children: [
-                              photoContainer(fashionCard[index]['image'], 13,
-                                  123.0, 145.7),
-                              15.89.width,
-                              Expanded(
-                                  child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  12.height,
-                                  Text.rich(TextSpan(children: [
-                                    TextSpan(
-                                      text:
-                                          "${fashionCard[index]['heading']} | ",
+                      child: Container(
+                        margin: const EdgeInsets.only(
+                            right: 17.16, bottom: 27, left: 17),
+                        child: Row(
+                          children: [
+                            Stack(
+                              alignment: Alignment.bottomLeft,
+                              children: [
+                                PhotoContainer(
+                                    imgUrl: fashionCard[index]['image'],
+                                    cornerRadius: 13,
+                                    height: 123.0,
+                                    width: 145.7),
+                                Positioned(
+                                    left: 10,
+                                    bottom: 7,
+                                    child: Row(
+                                      children: [
+                                        SvgPicture.asset('assets/book.svg'),
+                                        5.width,
+                                        const TextWidget(
+                                          text: '1 min',
+                                          color: Colors.white,
+                                          fontSize: 9,
+                                          fontWeight: FontWeight.w400,
+                                        )
+                                      ],
+                                    ))
+                              ],
+                            ),
+                            15.89.width,
+                            Expanded(
+                                child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                12.height,
+                                Text.rich(TextSpan(children: [
+                                  TextSpan(
+                                    text: "${fashionCard[index]['heading']}",
+                                    style: GoogleFonts.roboto(
+                                        color: HexColor('#E21B22'),
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  TextSpan(
+                                    text: " | ",
+                                    style: GoogleFonts.roboto(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  TextSpan(
+                                      text: "${fashionCard[index]['subhead']}",
                                       style: GoogleFonts.roboto(
-                                          color: HexColor('#E21B22'),
-                                          fontSize: 11,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                    TextSpan(
-                                        text:
-                                            "${fashionCard[index]['subhead']}",
-                                        style: GoogleFonts.roboto(
-                                            color: HexColor('#999999'),
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 11)),
-                                  ])),
-                                  10.height,
-                                  TextWidget(
-                                    maxlines: 2,
-                                    text: fashionCard[index]['title'],
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColor.primaryTextBlack,
-                                  ),
-                                  7.height,
-                                  TextWidget(
-                                    maxlines: 2,
-                                    text: fashionCard[index]['subtitle'],
-                                    color: HexColor('#666666'),
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 11,
-                                  ),
-                                  7.height,
-                                  TextWidget(
-                                    text: '#Fashion',
-                                    color: AppColor.primaryTextBlack,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 10.1,
-                                  ),
-                                ],
-                              ))
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                                          color: HexColor('#999999'),
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 11)),
+                                ])),
+                                10.height,
+                                TextWidget(
+                                  maxlines: 2,
+                                  text: fashionCard[index]['title'],
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColor.primaryTextBlack,
+                                ),
+                                7.height,
+                                TextWidget(
+                                  maxlines: 2,
+                                  text: fashionCard[index]['subtitle'],
+                                  color: HexColor('#666666'),
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11,
+                                ),
+                                7.height,
+                                TextWidget(
+                                  text: '#Fashion',
+                                  color: AppColor.primaryTextBlack,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 10.1,
+                                ),
+                              ],
+                            ))
+                          ],
+                        ),
+                      ),
+                    );
+                  })),
                   30.height
                 ],
               ),
